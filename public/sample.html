@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PDF-LIB SAMPLE Maintenance Report</title>
+    <link rel="stylesheet" href="bootstrap.css">
+<style type="text/css"> 
+
+/* tooltip styling. by default the element to be styled is .tooltip  */
+.tooltip {
+    display:none;
+    background:transparent url(media/image/black_arrow.png);
+    font-size:12px;
+    height:70px;
+    width:160px;
+    padding:25px;
+    color:#fff;
+}
+  
+
+.sbox select {
+  background-color: #4d4d4e;
+  color: cyan;
+  padding: 1px;
+  width: 40px;
+  border : solid 1px #ffffff;
+	border-radius : 3px;
+  font-size: 16px;
+  font-weight: bold;
+  bbox-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+}
+
+.sbox:hover::before {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.sbox select option {
+  padding: 3px;
+}    
+ 
+.btn-style{
+	border : solid 1px #ffffff;
+	border-radius : 3px;
+	moz-border-radius : 3px;
+	-webkit-box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+	-moz-box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+	box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+	font-size : 16px;
+	color : #f1f1f1; /*#d1ff6e; */
+	padding : 1px 10px;
+    background : #4d4d4e;
+	background : -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4d4d4e), color-stop(100%,#d3d6d9));
+	background : -moz-linear-gradient(top, #4d4d4e 0%, #d3d6d9 100%);
+	background : -webkit-linear-gradient(top, #4d4d4e 0%, #d3d6d9 100%);
+	background : -o-linear-gradient(top, #4d4d4e 0%, #d3d6d9 100%);
+	background : -ms-linear-gradient(top, #4d4d4e 0%, #d3d6d9 100%);
+	background : linear-gradient(top, #4d4d4e 0%, #d3d6d9 100%);
+	filter : progid:DXImageTransform.Microsoft.gradient( startColorstr='#4d4d4e', endColorstr='#d3d6d9',GradientType=0 );
+}  
+
+.redbutton {
+
+       background: #C9CBCF;
+   background-image: -webkit-linear-gradient(top, #C9CBCF, #ABADAF);
+   background-image: -moz-linear-gradient(top, #C9CBCF, #ABADAF);
+   background-image: -ms-linear-gradient(top, #C9CBCF, #ABADAF);
+   background-image: -o-linear-gradient(top, #C9CBCF, #ABADAF);
+   background-image: -webkit-gradient(to bottom, #C9CBCF, #ABADAF);
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 24px;
+   height: 24px;
+   line-height: 20px;
+   color: #FFFFFF;
+   font-family: Tahoma;
+   width: 90px;
+   font-size: 16px;
+   font-weight: 300;
+   padding: 1px;
+    margin-right: 5px;
+   -webkit-box-shadow: 1px 1px 1px 0 #000000;
+   -moz-box-shadow: 1px 1px 1px 0 #000000;
+   box-shadow: 1px 1px 1px 0 #000000;
+   text-shadow: 1px 1px 1px #000000;
+   border: solid #888888 1px;
+   text-decoration: none;
+   display: inline-block;
+   cursor: pointer;
+   text-align: center;
+}
+
+.redbutton:hover {
+   border: solid #FFFFFF 1px;
+   background: #29a0b9;
+   color: #ffcc00;    
+   background-image: -webkit-linear-gradient(top, #29a0b9, #2980b9);
+   background-image: -moz-linear-gradient(top, #29a0b9, #2980b9);
+   background-image: -ms-linear-gradient(top, #29a0b9, #2980b9);
+   background-image: -o-linear-gradient(top, #29a0b9, #2980b9);
+   background-image: -webkit-gradient(to bottom, #29a0b9, #2980b9);
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+   text-decoration: none;
+}
+/*.redbutton:visited:focus:active {  */
+    .redbutton:link {   
+  color: #FFFFFF;
+  background: yellow; 
+        font-size: 16px;
+   font-weight: 300;
+         text-decoration: none;
+}
+    
+
+    body{background-color:#E0EEE0}  
+</style> 
+
+    <script src="js/sweetalert2.all.min.js"></script>
+
+</head>
+<body>
+
+  <button style="margin-left: -235px;visibility:hidden;" id="markwz">&nbsp;</button>
+    <p style="margin-top:12px; font-family:Verdana;font-size: 24px;font-weight:bold;color:#a8a8a8" align="center">
+        <bold>PDF-LIB-SAMPLE MAINTENANCE REPORT</bold>
+         
+    </p>
+
+
+<script src="js/socket.io.js"></script>
+<script>
+
+    
+(function(){
+
+    var selProperty = "";
+    var sid="";
+    const element = id => document.getElementById(id)
+
+   let sp = element('sp')
+    
+   
+    
+    let bdw = element('bdw')
+    let gn = element('gn')
+    let nres = element('nres')
+    let markwz = element('markwz')
+   // let ulist = new Set()
+
+    let current = element('current')
+
+    // Connect to socket.io
+    let socket = io.connect('http://localhost:3396')
+
+    // Check for connection
+    if (socket !== undefined) {
+        let currentUser = -1
+        console.log('connected to socket...')
+
+        }   
+
+        markwz.addEventListener('click', event => {
+           console.log("MarkWZ:::" + selProperty);
+      //    if (selwz!="") {
+             socket.emit('svwz', {
+                selection: selProperty
+            })  
+            event.preventDefault()
+       
+        })
+
+
+
+Swal.fire({
+    title: "Input Property",
+    text: "Enter property name",
+    input: 'text',
+    showCancelButton: true        
+}).then((result) => {
+    if (result.value) {
+        console.log("Result: " + result.value);
+        selProperty =  result.value;   
+    
+     console.log("propName::::" + selProperty);    
+     markwz.click();
+     window.location.href = "/smallF";
+    }
+});
+//
+       
+
+
+})()
+</script>
+</body>
+</html>

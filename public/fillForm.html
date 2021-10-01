@@ -1,0 +1,222 @@
+<html>
+<head>
+<title>Maintenance Report</title>    
+<link rel="stylesheet" href="css/main-header-menu.css">
+<style type="text/css">
+.redbutton {
+
+       background: #C9CBCF;
+   background-image: -webkit-linear-gradient(top, #C9CBCF, #ABADAF);
+   background-image: -moz-linear-gradient(top, #C9CBCF, #ABADAF);
+   background-image: -ms-linear-gradient(top, #C9CBCF, #ABADAF);
+   background-image: -o-linear-gradient(top, #C9CBCF, #ABADAF);
+   background-image: -webkit-gradient(to bottom, #C9CBCF, #ABADAF);
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 24px;
+   height: 24px;
+   line-height: 20px;
+   color: #FFFFFF;
+   font-family: Tahoma;
+   width: 90px;
+   font-size: 16px;
+   font-weight: 300;
+   padding: 1px;
+    margin-left: 5px;
+    margin-right: 5px;
+   -webkit-box-shadow: 1px 1px 1px 0 #000000;
+   -moz-box-shadow: 1px 1px 1px 0 #000000;
+   box-shadow: 1px 1px 1px 0 #000000;
+   text-shadow: 1px 1px 1px #000000;
+   border: solid #888888 1px;
+   text-decoration: none;
+   display: inline-block;
+   cursor: pointer;
+   text-align: center;
+}
+
+.redbutton:hover {
+   border: solid #FFFFFF 1px;
+   background: #29a0b9;
+   color: #ffcc00;    
+   background-image: -webkit-linear-gradient(top, #29a0b9, #2980b9);
+   background-image: -moz-linear-gradient(top, #29a0b9, #2980b9);
+   background-image: -ms-linear-gradient(top, #29a0b9, #2980b9);
+   background-image: -o-linear-gradient(top, #29a0b9, #2980b9);
+   background-image: -webkit-gradient(to bottom, #29a0b9, #2980b9);
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+   text-decoration: none;
+}
+	</style>    
+<!--script src="jquery-2.1.4.js"></script-->
+<script type="text/javascript" src="js/jquery.js"></script>    
+<script src="js/socket.io.js"></script>  
+
+<script src="js/pdf-lib.js"></script>
+    <script src="js/sweetalert2.all.min.js"></script>
+ 
+</head>
+<body onload="sp.click();">
+    <header class="main-header">
+        <div class="main-container">
+            <!--img class="main-header-logo"  src="dcsline2.png" width="148" height="32" style="left:20px" /-->
+        <p style="margin-left: 50px; font-family: Arial; font-size:20px;font-weight: bold;color:#c8c8c8">PDF Maintenance Form </p>
+ 
+            <div>
+            <button id="clswrt" class="redbutton" style="width:120px"> Completion </button>
+             <a id="zzz" class="redbutton" href="/" style="width:120px"> back </a>
+            </div>    
+        </div>
+    </header>    
+    
+    <script>
+ var a=[];
+var recStat=0;       
+var aktuellesPDF="";
+function finishWart() {
+    cw.click();
+}    
+        
+function storeP() {
+    let event = new KeyboardEvent('keydown', {
+      key: "s",
+      code: "KeyS",
+      ctrlKey: true
+    });
+
+    document.dispatchEvent(event);
+
+}
+        
+function b1() {
+    alert("B1");
+}   
+        
+function readP() {
+    var key = 'wz';
+    var value = getParameter(key);
+    if (value) alert(value);
+}
+        
+
+function fillWZF(act) {        
+    console.log("WERKZEUG::" + act[1] + "<<>>>" + act[7] );
+
+    fillForm(act);
+}  
+    </script>
+ <button style="background-color: white; visibility:hidden;" id="sp">&nbsp;</button> 
+ <button style="background-color: white; visibility:hidden;" id="svrep">&nbsp;</button>  
+  <iframe id="ifrm"></iframe>  
+ 
+    <br>
+    
+	<script>
+        
+$(document).ready(function(){
+       $("#ifrm").height($(window).height());
+       $("#ifrm").width($(window).width());
+
+       $( window ).resize(function() {
+            $("#ifrm").height($(window).height());
+            $("#ifrm").width($(window).width());
+        });
+    });
+        
+  const { PDFDocument } = PDFLib
+
+        
+function downloadURL(url, name) {
+  var link = document.createElement("a");
+  link.download = name;
+  link.href = url;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  delete link;
+}
+
+function downloadFile() {
+  var data = "okay this is epic";
+  var blob = new Blob([data], {type: 'text/txt'});
+  var url  = window.URL.createObjectURL(blob);
+  downloadURL(url, "test.txt");
+}
+        
+(function(){
+   var sid="";
+    const element = id => document.getElementById(id)
+
+   let sp = element('sp')
+   let sr = element('svrep')
+   let cw = element('clswrt')
+   
+   let socket = io.connect('http://localhost:3396') 
+       if (socket !== undefined) {
+        let currentUser = -1
+        console.log('connected to socket...')
+        }   
+    
+    sp.addEventListener('click', event => {
+                 socket.emit('bldPDF', {
+                     form:'kl'
+              });
+        });
+    
+    sr.addEventListener('click', event => {
+                socket.emit('savSMALL', {
+                 repar: a
+             });
+        });
+    
+     cw.addEventListener('click', event => {
+                socket.emit('chkPDF', {
+                   wfile: aktuellesPDF
+             });
+        });
+    
+
+    
+    socket.on('resCW', function(bok) {    
+         console.log("resCW::" + bok);
+         if(bok) {
+           Swal.fire({
+                title: 'Finish Maintenance',
+                text: "Data updated",
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'next'
+            }).then((result) => {
+                    zzz.click();          
+            })
+            
+         } else {
+             Swal.fire('Incomplete form - maintenance not completed');  
+         }
+       
+         });
+
+    socket.on('smallEND', function(i) {    
+            window.history.back();
+         });
+
+    socket.on('resK1', function(strPN) {
+        console.log("resK1::" + strPN);
+        aktuellesPDF=strPN;
+        //open Report in iFrame on this html page
+       $('#ifrm').attr('src','http://localhost:3000/' + strPN + '.pdf#toolbar=1&navpanes=0&scrollbar=1&zoom=200'); //view=Fit'); 
+       //
+       //open Report in new window (see my comment to issue 921)
+       //
+       window.open('http://localhost:3000/' + strPN + '.pdf', "_blank")
+    })
+    
+        
+})()          
+        
+        
+</script>
+</body>
+</html>

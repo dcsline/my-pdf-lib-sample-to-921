@@ -1,0 +1,2343 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>MMS Serie</title>
+    <link rel="stylesheet" href="dist/jspanel.css">    
+    <link rel="stylesheet" href="index.css" />
+      <link rel="stylesheet" href="bootstrap.css">
+     <link rel="stylesheet" type="text/css" href="assets/css/jquery.dataTables.css"> 
+  </head>
+    <style>
+body {
+//  background: #eee !important; 
+background-image: url(/media/image/darkblue_1101_527.png);  //background_gray.png);  
+    background-repeat: no-repeat;  
+    background-size: cover;
+}        
+    div.container_1 {	
+    max-width: 1280px;   /*980px;*/
+  margin: 0 0 0 0;  
+}
+/*      https://codepen.io/FrankieDoodie/pen/Pyrqyp   */    
+
+.sbox select {
+  background-color: #9d9d9e;
+background : #9d9d9e;
+  color: yellow;
+  padding: 1px;
+  width: 30px;
+  border : solid 2px #000000;
+	border-radius : 3px;
+  font-size: 16px;
+  font-weight: bold;
+  bbox-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+}
+
+.sbox:hover::before {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.sbox select option {
+  padding: 3px;
+}    
+ 
+.sbox2 select {
+  background-color: #9d9d9e;
+background : #9d9d9e;
+  color: yellow;
+  padding: 1px;
+  width: 25px;
+  border : solid 2px #000000;
+	border-radius : 3px;
+  font-size: 12px;
+  font-weight: bold;
+  bbox-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+}
+
+.sbox2:hover::before {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.sbox2 select option {
+  padding: 3px;
+}            
+        
+.btn-style{
+	border : solid 1px #ffffff;
+	border-radius : 3px;
+	moz-border-radius : 3px;
+	-webkit-box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+	-moz-box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+	box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+	font-size : 16px;
+	color : yellow;
+	padding : 1px 10px;
+    width: 55px;
+    background : #4d4d4e;
+	background : -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4d4d4e), color-stop(100%,#d3d6d9));
+	background : -moz-linear-gradient(top, #4d4d4e 0%, #d3d6d9 100%);
+	background : -webkit-linear-gradient(top, #4d4d4e 0%, #d3d6d9 100%);
+	background : -o-linear-gradient(top, #4d4d4e 0%, #d3d6d9 100%);
+	background : -ms-linear-gradient(top, #4d4d4e 0%, #d3d6d9 100%);
+	background : linear-gradient(top, #4d4d4e 0%, #d3d6d9 100%);  
+	filter : progid:DXImageTransform.Microsoft.gradient( startColorstr='#4d4d4e', endColorstr='#d3d6d9',GradientType=0 );
+
+}  
+    .btn-style:hover{
+       background : #050454; 
+    }         
+        
+       
+.btn-style2{
+	border : solid 1px #ffffff;
+	border-radius : 3px;
+	moz-border-radius : 3px;
+	-webkit-box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+	-moz-box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+	box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+	font-size : 12px;
+	color : yellow;
+	padding : 1px 2px;
+   background : #4d4d4e;
+	background : -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4d4d4e), color-stop(100%,#d3d6d9));
+	background : -moz-linear-gradient(top, #4d4d4e 0%, #d3d6d9 100%);
+	background : -webkit-linear-gradient(top, #4d4d4e 0%, #d3d6d9 100%);
+	background : -o-linear-gradient(top, #4d4d4e 0%, #d3d6d9 100%);
+	background : -ms-linear-gradient(top, #4d4d4e 0%, #d3d6d9 100%);
+	background : linear-gradient(top, #4d4d4e 0%, #d3d6d9 100%);  
+	filter : progid:DXImageTransform.Microsoft.gradient( startColorstr='#4d4d4e', endColorstr='#d3d6d9',GradientType=0 );
+
+}  
+    .btn-style2:hover{
+       background : #050454; 
+    }     
+    td.nio {
+        font-weight: bold;
+        color: red;
+       // background-color:yellow;
+    }
+    td.io {
+        font-weight: bold;
+        color: darkgreen;
+        //background-color:yellow;
+    }
+    td {
+     /*   font-weight: bold;
+        color: red;
+        background-color:yellow;*/
+        font-size:0.7em;
+    }    
+
+</style>
+
+<body>
+      
+      <!--div style="position:absolute; top:20px; left:25px;">
+          <img src="Magna-Logo-LR150.png" width="148" height="32" alt="testbild">
+          
+      </div-->
+       <div style="max-width: 100%;margin: 0 0 0 0; " >
+      <div class="row" style="height:45px;">
+                         <div style="position:absolute; top:8px; left:12px;">
+                            <a class="item-content" href="#" onclick="test()">
+                                <img src="Magna-Logo-LR20.png" width="148" height="32" alt="testbild" onclick="">
+                                
+                            </a>
+                        </div>
+                        <button class="btn-block" style="margin-top: 5px;background-color: white; pointer-events: none;font-weight:bold;font-size:20px" margin-top: 5px;>MonStat</button>
+                  </div>
+           </div>
+       <div style="position:absolute; top:-4px; right:25px;">
+          <p style="font-size:16px;text-align:right;"><div class="sbox"><button class="btn-style"><a style="color : #d1ff6e;" href="/logout">EXIT</a></button></div></p>
+           
+      </div>
+      <button id="sp" style="visibility:hidden">MonEOLx</button>
+      <button id="sp13" style="visibility:hidden">MonStat13</button>
+      <button id="sp14" style="visibility:hidden">MonStat14</button>
+      <button id="sp24" style="visibility:hidden">MonStat24</button>
+      <button id="sp51" style="visibility:hidden">MonStat51</button>
+      <button id="sp52" style="visibility:hidden">MonStat52</button>
+      <button id="sp53" style="visibility:hidden">MonStat53</button>
+      <button id="sp54" style="visibility:hidden">MonStat54</button>
+      <button id="sp55" style="visibility:hidden">MonStat55</button>
+      <button id="sp56" style="visibility:hidden">MonStat56</button>
+      <button id="sp57" style="visibility:hidden">MonStat57</button>
+      <button id="sp58" style="visibility:hidden">MonStat58</button>
+      <button id="scht" style="visibility:hidden">&nbsp;</button>
+      <button id="scht13" style="visibility:hidden">&nbsp;</button>
+      <button id="scht14" style="visibility:hidden">&nbsp;</button>
+      <button id="scht24" style="visibility:hidden">&nbsp;</button>
+      <button id="scht51" style="visibility:hidden">&nbsp;</button>
+      <button id="scht52" style="visibility:hidden">&nbsp;</button>
+      <button id="scht53" style="visibility:hidden">&nbsp;</button>
+      <button id="scht54" style="visibility:hidden">&nbsp;</button>
+      <button id="scht55" style="visibility:hidden">&nbsp;</button>
+      <button id="scht56" style="visibility:hidden">&nbsp;</button>
+      <button id="scht57" style="visibility:hidden">&nbsp;</button>
+      <button id="scht58" style="visibility:hidden">&nbsp;</button>
+      <!--h1><center>MMS Serie</center> </h1-->
+      <script src="node_modules/socket.io-client/dist/socket.io.js"></script>
+    
+        </div>
+     </div--> 
+    <!--h3>&nbsp;</h3-->  
+    <link rel="stylesheet" href="assets/css/dark.css">
+    <script src="assets/js/sweetalert2.min.js"></script>
+    <!--link rel="stylesheet" href="assets/css/sweetalert2.min.css"-->
+    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+    
+    <div id="golden" style="width: 1000px; height:460px; margin:0px auto"> </div> 
+    <script type="text/javascript">
+        var charts = {};
+
+function add(s) {
+
+};
+
+    </script>
+
+ <script src="dist/jspanel.js"></script>
+    <script src="font-awesome/5.9.0-pro/js/all.js">
+    <!-- optionally load jsPanel extensions -->
+    <script src="dist/extensions/contextmenu/jspanel.contextmenu.js"></script>
+    <script src="dist/extensions/hint/jspanel.hint.js"></script>
+    <script src="dist/extensions/modal/jspanel.modal.js"></script>
+    <script src="dist/extensions/tooltip/jspanel.tooltip.js"></script>
+    <script src="dist/extensions/dock/jspanel.dock.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.dataTables.js"></script>
+    <script src="js/core.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/themes/dataviz.js"></script>
+    <script src="js/d3.v4.min.js"></script>
+    <!--script src="indexx2.js"></script-->
+    <script src="js/moment-with-locales.min.js" type="text/javascript"></script>
+        
+    <script>
+   
+
+//am4core.useTheme(am4themes_animated);
+am4core.useTheme(am4themes_dataviz);
+var indicator = [];
+var indicatorInterval = []; 
+var indicatorLabel = [];        
+var indiNoData = [];
+var indiNoDataLbl = [];
+var hourglass = [];        
+/*var indicator14;
+var indicatorInterval14;    
+var indicator14a;        
+var indicator24;
+var indicatorInterval24;         
+var indicator55;
+var indicatorInterval55;  
+var indicator56;
+var indicatorInterval56; 
+var indicator57;
+var indicatorInterval57;         */
+//var d = [];
+var ccc;
+var rr= [];
+var datarr= [];        
+var dataDtl = []; 
+var stunde = "00000000";
+var std = "";
+var gan;
+var fan;
+var v = "";
+var sBand = "";
+var sSchicht = "";
+var sel13 = "";        
+var sel14 = "";
+var sel24 = ""; 
+var sel51 = "";        
+var sel52 = ""; 
+var sel53 = ""; 
+var sel54 = "";         
+var sel55 = ""; 
+var sel56 = "";  
+var sel57 = "";         
+var sel58 = "";  
+var t = [];        
+//var t55;
+//var t56;
+//var t57;        
+var bClick=false;          
+moment.locale('de');
+    var wrkdat = moment().add(0,'days').format('YYYYMMDD').toString(); 
+    var wrkdat2 = moment().add(1,'days').format('YYYYMMDD').toString();    
+    var wrktim = moment().add(0,'days').format('HHmmss').toString();     
+//var wrkdat = moment().format('YYYYMMDD').toString();           
+console.log("W:::" + wrkdat + "Zt::" +wrktim); 
+var d1= wrkdat;  //"20190514";
+var d2= wrkdat;  //"20190514";      
+var dnext = wrkdat2;        
+
+      
+
+  
+          
+(function(){
+
+    var sid="";
+    const element = id => document.getElementById(id)
+
+    let sp = element('sp')
+    let sp13 = element('sp13')
+    let sp14 = element('sp14')
+    let sp24 = element('sp24')
+    let sp51 = element('sp51')
+    let sp52 = element('sp52')
+    let sp53 = element('sp53')
+    let sp54 = element('sp54')
+    let sp55 = element('sp55')
+    let sp56 = element('sp56')
+    let sp57 = element('sp57')
+    let sp58 = element('sp58')
+     let ri = element('ri')
+    
+    
+    let gn = element('gn')
+    let nres = element('nres')
+
+   // let ulist = new Set()
+
+    let current = element('current')
+
+    // Connect to socket.io
+     let socket = io.connect('http://localhost:3366')
+    // let socket = io.connect('http://sczsrv21wf:3366')
+     socket.emit('lastSID', {
+                station: 'UR'
+            });
+
+/*        sp.addEventListener('click', event => {
+            var iii =parseInt(sBand);
+            var seq=$( "select option:selected" ).text();  //.split('S');
+            console.log("SQ:::" + seq);
+            sSchicht = seq.substr(iScht[iii],2);
+            console.log("sBand::" + sBand + " " + sSchicht);
+            showIndicator();
+             socket.emit('find', {
+                station: sBand,
+                schicht: sSchicht,
+                type: 'MW',
+                source: d1,
+                target: d2 
+            });
+          
+            event.preventDefault();
+             var inter = setInterval(function() {
+            socket.emit('find', {
+                station: sBand,
+                schicht: sSchicht,
+                type: 'MW',
+                source: d1,
+                target: d2 
+            })
+            event.preventDefault()
+            }, 30000);
+        });             */
+    
+    sp13.addEventListener('click', event => {
+            console.log("SP13.........");
+            showIndicator(sBand);  //14();
+            socket.emit('find13', {
+                schicht: sel13,
+                source: d1,
+                target: d2 
+            });
+          
+            event.preventDefault();
+            var inter = setInterval(function() {
+                socket.emit('find13', {
+                    schicht: sel13,
+                    source: d1,
+                    target: d2 
+                })
+            event.preventDefault()
+//        }, 90000);
+            }, 30000);
+        });
+    
+    sp14.addEventListener('click', event => {
+            console.log("SP14.........");
+            showIndicator(sBand);  //14();
+            socket.emit('find14', {
+                schicht: sel14,
+                source: d1,
+                target: d2 
+            });
+          
+            event.preventDefault();
+            var inter = setInterval(function() {
+                socket.emit('find14', {
+                    schicht: sel14,
+                    source: d1,
+                    target: d2 
+                })
+            event.preventDefault()
+//        }, 90000);
+            }, 30000);
+        });
+    
+    sp24.addEventListener('click', event => {
+            showIndicator(sBand);  //24();
+            socket.emit('find24', {
+                schicht: sel24,
+                source: d1,
+                target: d2 
+            });
+          
+            event.preventDefault();
+            var inter = setInterval(function() {
+                socket.emit('find24', {
+                    schicht: sel24,
+                    source: d1,
+                    target: d2 
+                })
+            event.preventDefault()
+//        }, 90000);
+            }, 30000);
+        });
+    sp51.addEventListener('click', event => {
+            showIndicator(sBand);  //55();
+        console.log("BAND51 - clicked");
+            socket.emit('find51', {
+                schicht: sel51,
+                source: d1,
+                target: d2 
+            });
+          
+            event.preventDefault();
+            var inter = setInterval(function() {
+                socket.emit('find51', {
+                    schicht: sel51,
+                    source: d1,
+                    target: d2 
+                })
+            event.preventDefault()
+//        }, 90000);
+            }, 30000);
+        });
+      sp52.addEventListener('click', event => {
+            showIndicator(sBand);  //55();
+            socket.emit('find52', {
+                schicht: sel52,
+                source: d1,
+                target: d2 
+            });
+          
+            event.preventDefault();
+            var inter = setInterval(function() {
+                socket.emit('find52', {
+                    schicht: sel52,
+                    source: d1,
+                    target: d2 
+                })
+            event.preventDefault()
+//        }, 90000);
+            }, 30000);
+        });
+   
+      sp53.addEventListener('click', event => {
+            showIndicator(sBand);  //55();
+            socket.emit('find53', {
+                schicht: sel53,
+                source: d1,
+                target: d2 
+            });
+          
+            event.preventDefault();
+            var inter = setInterval(function() {
+                socket.emit('find53', {
+                    schicht: sel53,
+                    source: d1,
+                    target: d2 
+                })
+            event.preventDefault()
+//        }, 90000);
+            }, 30000);
+        });
+    
+    sp54.addEventListener('click', event => {
+            showIndicator(sBand);  //55();
+            socket.emit('find54', {
+                schicht: sel54,
+                source: d1,
+                target: d2 
+            });
+          
+            event.preventDefault();
+            var inter = setInterval(function() {
+                socket.emit('find54', {
+                    schicht: sel54,
+                    source: d1,
+                    target: d2 
+                })
+            event.preventDefault()
+//        }, 90000);
+            }, 30000);
+        });
+    
+    sp55.addEventListener('click', event => {
+            showIndicator(sBand);  //55();
+            socket.emit('find55', {
+                schicht: sel55,
+                source: d1,
+                target: d2 
+            });
+          
+            event.preventDefault();
+            var inter = setInterval(function() {
+                socket.emit('find55', {
+                    schicht: sel55,
+                    source: d1,
+                    target: d2 
+                })
+            event.preventDefault()
+//        }, 90000);
+            }, 30000);
+        });
+   
+    sp56.addEventListener('click', event => {
+            showIndicator(sBand);  //56();
+            socket.emit('find56', {
+                schicht: sel56,
+                source: d1,
+                target: d2 
+            });
+          
+            event.preventDefault();
+            var inter = setInterval(function() {
+                socket.emit('find56', {
+                    schicht: sel56,
+                    source: d1,
+                    target: d2 
+            })
+            event.preventDefault()
+//        }, 90000);
+            }, 30000);
+        });
+    
+    sp57.addEventListener('click', event => {
+            showIndicator(sBand);  //57();
+             socket.emit('find57', {
+                schicht: sel57,
+                source: d1,
+                target: d2 
+            });
+          
+            event.preventDefault();
+             var inter = setInterval(function() {
+             socket.emit('find57', {
+                schicht: sel57,
+                source: d1,
+                target: d2 
+            })
+            event.preventDefault()
+//        }, 90000);
+            }, 30000);
+        });
+    
+    sp58.addEventListener('click', event => {
+            showIndicator(sBand);  //57();
+            if(sel58.substr(0,2)=='NS') d2 = dnext;
+             socket.emit('find58', {
+                schicht: sel58,
+                source: d1,
+                target: d2 
+            });
+          
+            event.preventDefault();
+             var inter = setInterval(function() {
+             socket.emit('find58', {
+                schicht: sel58,
+                source: d1,
+                target: d2 
+            })
+            event.preventDefault()
+//        }, 90000);
+            }, 30000);
+        });
+    
+       scht.addEventListener('click', event => {
+          // var el = document.getElementsById('oScht')[0]; 
+          // console.log("EL:::"+ $("#oScht").val());
+          // var el = document.querySelector('#oScht').parentNode[0];
+        //   console.log("EL:::"+el);
+            sSchicht = $( "select option:selected" ).text();
+             console.log(sBand+ "....sSchicht::" + sSchicht);
+        //    if(sSchicht!='--') sp.click();
+           if(sSchicht!='--') {
+                switch(sBand) {
+                   // case '13':
+                    //case '24':
+                    case '46':
+                    case '47':            
+                    case '49':
+                //    case '51':
+                //    case '52':
+                //    case '53':
+                 //   case '54':
+                //    case 157:      
+                            sp.click();
+                        break;
+                    case '13':
+                            sp13.click();
+                        break;    
+                    case '14':
+                            sp14.click();    
+                    case '24':
+                            sp24.click();
+                        break;    
+                    case '51':
+                        sp51.click();
+                        break;
+                    case '52':
+                        sp52.click();
+                        break;
+                    case '53':  
+                        sp53.click();
+                        break;
+                    case '54':
+                            sp54.click();
+                        break;    
+                    case '55':
+                            sp55.click();
+                        break;
+                    case '56':
+                            sp56.click();
+                        break;    
+                    case '57':
+                            sp57.click();
+                        break;      
+                    case '58':
+                            sp58.click();
+                        break;          
+                    default:
+                        // code block
+                }    
+            }
+        })    
+    scht13.addEventListener('click', event => {
+          sel13 = document.getElementById('oScht13').value;
+            if(sel13!='--') sp13.click();
+        });
+    scht14.addEventListener('click', event => {
+          sel14 = document.getElementById('oScht14').value;
+          //console.log("Sel24:::"+sel24);
+            if(sel14!='--') sp14.click();
+        });
+    
+    scht24.addEventListener('click', event => {
+          sel24 = document.getElementById('oScht24').value;
+          //console.log("Sel24:::"+sel24);
+            if(sel24!='--') sp24.click();
+        });
+    scht51.addEventListener('click', event => {
+          sel51 = document.getElementById('oScht51').value;
+          //console.log("Sel55:::"+sel55);
+            if(sel51!='--') sp51.click();
+        });
+    scht52.addEventListener('click', event => {
+          sel52 = document.getElementById('oScht52').value;
+          //console.log("Sel55:::"+sel55);
+            if(sel52!='--') sp52.click();
+        });
+    scht53.addEventListener('click', event => {
+          sel53 = document.getElementById('oScht53').value;
+          //console.log("Sel55:::"+sel55);
+            if(sel53!='--') sp53.click();
+        });
+     scht54.addEventListener('click', event => {
+          sel54 = document.getElementById('oScht54').value;
+          //console.log("Sel55:::"+sel55);
+            if(sel54!='--') sp54.click();
+        });
+    
+    scht55.addEventListener('click', event => {
+          sel55 = document.getElementById('oScht55').value;
+          //console.log("Sel55:::"+sel55);
+            if(sel55!='--') sp55.click();
+        });
+    
+    scht56.addEventListener('click', event => {
+          sel56 = document.getElementById('oScht56').value;
+          //console.log("Sel56:::"+sel56);
+            if(sel56!='--') sp56.click();
+        });  
+    
+    scht57.addEventListener('click', event => {
+          sel57 = document.getElementById('oScht57').value;
+          //console.log("Sel57:::"+sel57);
+            if(sel57!='--') sp57.click();
+        });
+    
+    scht58.addEventListener('click', event => {
+          sel58 = document.getElementById('oScht58').value;
+          console.log("Sel58:::"+sel58);
+            if(sel58!='--') sp58.click();
+        });    
+    
+    socket.on('result', function(myres) {
+     $("#idbw").css("background","#ccc");     
+    //  
+        if (indicator) {hideIndicator(sBand);}
+//++++++++++++++++++++++++++
+     rr = [];     
+     gsum=0;
+     fsum=0;
+         myres.forEach(function(obj){
+        o1 = {category:obj.stunde, value1:obj.ganzahl, value2:obj.fanzahl};
+        std = obj.stunde;
+        gan = obj.ganzahl;
+        gsum= gsum + gan;     
+        fan = obj.fanzahl;
+        fsum= fsum + fan;      
+         console.log(pad(std,2)+"#" +pad(gan,3)+"#" +pad(fan,3));
+        v = pad(std,2)+pad(gan,3)+pad(fan,3);
+       // console.log("VV:" + v);     
+        rr.push(o1);
+});
+        
+
+/*    if (0 == rr.length) {    
+        Swal.fire({
+            position: 'center',
+            type: 'error',
+            //showCancelButton: true,
+            title: 'Keine Daten vorhanden',
+            showConfirmButton: false,
+            timer: 3000  //1500
+})
+
+}   */
+
+//AmCharts.checkEmptyData(chart);
+ //  }
+    
+         //##############################################################
+          if(v != stunde) {
+                
+          charts['chartdiv'+sBand] .data =  rr;
+     stunde = v;
+   } 
+       
+        
+     })
+    
+    socket.on('result13', function(myres) {
+    t[13].clear().draw();
+     $("#idbw").css("background","#ccc");     
+    //  
+        if (indicator[sBand]) {hideIndicator(sBand);}
+   //++++++++++++++++++++++++++      
+    a = new Date();
+    b = a.getHours(); c = a.getMinutes(); d = a.getSeconds();
+    if(b < 10){b = '0'+b;} 
+    if(c < 10){c = '0'+c;} 
+    if(d < 10){d = '0'+d;}
+    zeit = b+':'+c+':'+d;
+    $('#timestamp13').text(zeit);
+    //++++++++++++++++++++++++++
+     rr = [];     
+    var gsum=0;
+    var fsum=0;    
+    var obst=0;
+    var s1=0;
+    var s2=0;
+         myres.forEach(function(obj){
+        if(obst==0) obst=obj.stunde;     
+        if(obj.stunde!=obst){
+        //o1 = {category:obj.stunde, value1:obj.ganzahl, value2:obj.fanzahl};
+            o1 = {category:obst, value1:s1, value2:s2};
+        std = obst;  //obj.stunde;
+        gan = s1;  //obj.ganzahl;
+        gsum=gsum + gan;    
+        if(gan == 0 ) gan=null;     
+        fan = s2;  //obj.fanzahl;
+        fsum=fsum + fan;    
+        if(fan == 0 ) fan=null;
+       //  console.log(pad(std,2)+"#" +pad(gan,3)+"#" +pad(fan,3));
+        v = pad(std,2)+pad(gan,3)+pad(fan,3);
+       // console.log("VV:" + v);     
+        rr.push(o1);
+        s1=0;
+        s2=0;    
+        } 
+            obst=obj.stunde;
+            s1=s1+obj.ganzahl;
+            s2=s2+obj.fanzahl;
+        t[13].row.add([obj.stunde,obj.spiegel_nr,obj.fehler,obj.ganzahl, obj.fanzahl ]).draw();  
+});
+    if(s1+s2>0) {
+        o1 = {category:obst, value1:s1, value2:s2};
+        gsum=gsum + s1;  
+        fsum=fsum + s2;
+        rr.push(o1);
+    }
+    if (0 == rr.length) {    
+           showIndiNoData('13');
+        }
+     //##############################################################
+    if(v != stunde) {
+        charts['chartdiv13'] .data =  rr;
+        stunde = v;
+    } 
+    $("#gt13").text(gsum.toString());
+    $("#fe13").text(fsum.toString());
+    });  
+    
+    socket.on('result14', function(myres) {
+     $("#idbw").css("background","#ccc");     
+    //  
+        if (indicator[sBand]) {hideIndicator(sBand);}
+    //++++++++++++++++++++++++++      
+    a = new Date();
+    b = a.getHours(); c = a.getMinutes(); d = a.getSeconds();
+    if(b < 10){b = '0'+b;} 
+    if(c < 10){c = '0'+c;} 
+    if(d < 10){d = '0'+d;}
+    zeit = b+':'+c+':'+d;
+    $('#timestamp14').text(zeit);
+    //++++++++++++++++++++++++++
+     rr = []; 
+    var gsum=0;
+    var fsum=0;    
+     myres.forEach(function(obj){
+        o1 = {category:obj.stunde, value1:obj.ganzahl, value2:obj.fanzahl};
+        std = obj.stunde;
+        gan = obj.ganzahl;
+         gsum=gsum + gan;
+        if(gan == 0 ) gan=null;     
+        fan = obj.fanzahl;
+         fsum=fsum + fan;
+        if(fan == 0 ) fan=null;
+         console.log(pad(std,2)+"#" +pad(gan,3)+"#" +pad(fan,3));
+        v = pad(std,2)+pad(gan,3)+pad(fan,3);
+       // console.log("VV:" + v);     
+        rr.push(o1);
+     });
+
+    if (0 == rr.length) {    
+        showIndiNoData('14');
+    }  
+         //##############################################################
+          if(v != stunde) {
+          charts['chartdiv14'] .data =  rr;
+     stunde = v;
+   } 
+        $("#gt14").text(gsum.toString());
+    $("#fe14").text(fsum.toString());
+     })    
+
+      
+    
+
+    socket.on('result24', function(myres) {
+    t[24].clear().draw();
+     $("#idbw").css("background","#ccc");     
+    //  
+        if (indicator[sBand]) {hideIndicator(sBand);}
+   //++++++++++++++++++++++++++      
+    a = new Date();
+    b = a.getHours(); c = a.getMinutes(); d = a.getSeconds();
+    if(b < 10){b = '0'+b;} 
+    if(c < 10){c = '0'+c;} 
+    if(d < 10){d = '0'+d;}
+    zeit = b+':'+c+':'+d;
+    $('#timestamp24').text(zeit);
+    //++++++++++++++++++++++++++
+     rr = []; 
+    var gsum=0;
+    var fsum=0;    
+    var obst=0;
+    var s1=0;
+    var s2=0;
+         myres.forEach(function(obj){
+        if(obst==0) obst=obj.stunde;     
+        if(obj.stunde!=obst){
+        //o1 = {category:obj.stunde, value1:obj.ganzahl, value2:obj.fanzahl};
+            o1 = {category:obst, value1:s1, value2:s2};
+        std = obst;  //obj.stunde;
+        gan = s1;  //obj.ganzahl;
+        gsum=gsum + gan;    
+        if(gan == 0 ) gan=null;     
+        fan = s2;  //obj.fanzahl;
+        fsum=fsum + fan;    
+        if(fan == 0 ) fan=null;
+       //  console.log(pad(std,2)+"#" +pad(gan,3)+"#" +pad(fan,3));
+        v = pad(std,2)+pad(gan,3)+pad(fan,3);
+       // console.log("VV:" + v);     
+        rr.push(o1);
+        s1=0;
+        s2=0;    
+        } 
+            obst=obj.stunde;
+            s1=s1+obj.ganzahl;
+            s2=s2+obj.fanzahl;
+        t[24].row.add([obj.stunde,obj.spiegel_nr,obj.fehler,obj.ganzahl, obj.fanzahl ]).draw();  
+});
+    if(s1+s2>0) {
+         o1 = {category:obst, value1:s1, value2:s2};
+        gsum=gsum + s1;  
+        fsum=fsum + s2;
+        rr.push(o1);
+    }
+    if (0 == rr.length) {    
+           showIndiNoData('24');
+        }
+     //##############################################################
+    if(v != stunde) {
+        charts['chartdiv24'] .data =  rr;
+        stunde = v;
+    } 
+    $("#gt24").text(gsum.toString());
+    $("#fe24").text(fsum.toString());    
+    }); 
+
+   socket.on('result55alt', function(myres) {
+     $("#idbw").css("background","#ccc");     
+    //  
+        if (indicator[sBand]) {hideIndicator(sBand);}
+    //++++++++++++++++++++++++++      
+    a = new Date();
+    b = a.getHours(); c = a.getMinutes(); d = a.getSeconds();
+    if(b < 10){b = '0'+b;} 
+    if(c < 10){c = '0'+c;} 
+    if(d < 10){d = '0'+d;}
+    zeit = b+':'+c+':'+d;
+    $('#timestamp55').text(zeit);
+    //++++++++++++++++++++++++++
+     rr = [];     
+         myres.forEach(function(obj){
+        o1 = {category:obj.stunde, value1:obj.ganzahl, value2:obj.fanzahl};
+        std = obj.stunde;
+        gan = obj.ganzahl;
+        if(gan == 0 ) gan=null;     
+        fan = obj.fanzahl;
+        if(fan == 0 ) fan=null;
+         console.log(pad(std,2)+"#" +pad(gan,3)+"#" +pad(fan,3));
+        v = pad(std,2)+pad(gan,3)+pad(fan,3);
+       // console.log("VV:" + v);     
+        rr.push(o1);
+         });
+       if (0 == rr.length) {    
+           showIndiNoData('55');
+        }
+         //##############################################################
+          if(v != stunde) {
+          charts['chartdiv55'] .data =  rr;
+     stunde = v;
+   } 
+
+     })
+
+socket.on('result51', function(myres) {
+    t[51].clear().draw();
+     $("#idbw").css("background","#ccc");     
+    //  
+        if (indicator[sBand]) {hideIndicator(sBand);}
+   //++++++++++++++++++++++++++      
+    a = new Date();
+    b = a.getHours(); c = a.getMinutes(); d = a.getSeconds();
+    if(b < 10){b = '0'+b;} 
+    if(c < 10){c = '0'+c;} 
+    if(d < 10){d = '0'+d;}
+    zeit = b+':'+c+':'+d;
+    $('#timestamp51').text(zeit);
+    //++++++++++++++++++++++++++
+     rr = []; 
+    var gsum=0;
+    var fsum=0;
+    var obst=0;
+    var s1=0;
+    var s2=0;
+         myres.forEach(function(obj){
+        if(obst==0) obst=obj.stunde;     
+        if(obj.stunde!=obst){
+        //o1 = {category:obj.stunde, value1:obj.ganzahl, value2:obj.fanzahl};
+            o1 = {category:obst, value1:s1, value2:s2};
+        std = obst;  //obj.stunde;
+        gan = s1;  //obj.ganzahl;
+        gsum=gsum + gan;    
+        if(gan == 0 ) gan=null;     
+        fan = s2;  //obj.fanzahl;
+        fsum=fsum + fan;    
+        if(fan == 0 ) fan=null;
+       //  console.log(pad(std,2)+"#" +pad(gan,3)+"#" +pad(fan,3));
+        v = pad(std,2)+pad(gan,3)+pad(fan,3);
+       // console.log("VV:" + v);     
+        rr.push(o1);
+        s1=0;
+        s2=0;    
+        } 
+            obst=obj.stunde;
+            s1=s1+obj.ganzahl;
+            s2=s2+obj.fanzahl;
+        t[51].row.add([obj.stunde,obj.spiegel_nr,obj.fehler,obj.ganzahl, obj.fanzahl ]).draw();  
+});
+    if(s1+s2>0) {
+         o1 = {category:obst, value1:s1, value2:s2};
+        gsum=gsum + s1;  
+        fsum=fsum + s2;
+        rr.push(o1);
+    }
+    if (0 == rr.length) {    
+           showIndiNoData('51');
+        }
+     //##############################################################
+    if(v != stunde) {
+        charts['chartdiv51'] .data =  rr;
+        stunde = v;
+    } 
+    $("#gt51").text(gsum.toString());
+    $("#fe51").text(fsum.toString());
+    });     
+    
+socket.on('result52', function(myres) {
+    t[52].clear().draw();
+     $("#idbw").css("background","#ccc");     
+    //  
+        if (indicator[sBand]) {hideIndicator(sBand);}
+   //++++++++++++++++++++++++++      
+    a = new Date();
+    b = a.getHours(); c = a.getMinutes(); d = a.getSeconds();
+    if(b < 10){b = '0'+b;} 
+    if(c < 10){c = '0'+c;} 
+    if(d < 10){d = '0'+d;}
+    zeit = b+':'+c+':'+d;
+    $('#timestamp52').text(zeit);
+    //++++++++++++++++++++++++++
+     rr = []; 
+    var gsum=0;
+    var fsum=0;
+    var obst=0;
+    var s1=0;
+    var s2=0;
+         myres.forEach(function(obj){
+        if(obst==0) obst=obj.stunde;     
+        if(obj.stunde!=obst){
+        //o1 = {category:obj.stunde, value1:obj.ganzahl, value2:obj.fanzahl};
+            o1 = {category:obst, value1:s1, value2:s2};
+        std = obst;  //obj.stunde;
+        gan = s1;  //obj.ganzahl;
+        gsum=gsum + gan;    
+        if(gan == 0 ) gan=null;     
+        fan = s2;  //obj.fanzahl;
+        fsum=fsum + fan;    
+        if(fan == 0 ) fan=null;
+       //  console.log(pad(std,2)+"#" +pad(gan,3)+"#" +pad(fan,3));
+        v = pad(std,2)+pad(gan,3)+pad(fan,3);
+       // console.log("VV:" + v);     
+        rr.push(o1);
+        s1=0;
+        s2=0;    
+        } 
+            obst=obj.stunde;
+            s1=s1+obj.ganzahl;
+            s2=s2+obj.fanzahl;
+        t[52].row.add([obj.stunde,obj.spiegel_nr,obj.fehler,obj.ganzahl, obj.fanzahl ]).draw();  
+});
+    if(s1+s2>0) {
+         o1 = {category:obst, value1:s1, value2:s2};
+        gsum=gsum + s1;  
+        fsum=fsum + s2;
+        rr.push(o1);
+    }
+    if (0 == rr.length) {    
+           showIndiNoData('52');
+        }
+     //##############################################################
+    if(v != stunde) {
+        charts['chartdiv52'] .data =  rr;
+        stunde = v;
+    } 
+    $("#gt52").text(gsum.toString());
+    $("#fe52").text(fsum.toString());
+    });       
+    
+socket.on('result53', function(myres) {
+    t[53].clear().draw();
+     $("#idbw").css("background","#ccc");     
+    //  
+        if (indicator[sBand]) {hideIndicator(sBand);}
+   //++++++++++++++++++++++++++      
+    a = new Date();
+    b = a.getHours(); c = a.getMinutes(); d = a.getSeconds();
+    if(b < 10){b = '0'+b;} 
+    if(c < 10){c = '0'+c;} 
+    if(d < 10){d = '0'+d;}
+    zeit = b+':'+c+':'+d;
+    $('#timestamp53').text(zeit);
+    //++++++++++++++++++++++++++
+     rr = [];    
+    var gsum=0;
+    var fsum=0;
+    var obst=0;
+    var s1=0;
+    var s2=0;
+         myres.forEach(function(obj){
+        if(obst==0) obst=obj.stunde;     
+        if(obj.stunde!=obst){
+        //o1 = {category:obj.stunde, value1:obj.ganzahl, value2:obj.fanzahl};
+            o1 = {category:obst, value1:s1, value2:s2};
+        std = obst;  //obj.stunde;
+        gan = s1;  //obj.ganzahl;
+        gsum=gsum + gan;    
+        if(gan == 0 ) gan=null;     
+        fan = s2;  //obj.fanzahl;
+        fsum=fsum + fan;    
+        if(fan == 0 ) fan=null;
+       //  console.log(pad(std,2)+"#" +pad(gan,3)+"#" +pad(fan,3));
+        v = pad(std,2)+pad(gan,3)+pad(fan,3);
+       // console.log("VV:" + v);     
+        rr.push(o1);
+        s1=0;
+        s2=0;    
+        } 
+            obst=obj.stunde;
+            s1=s1+obj.ganzahl;
+            s2=s2+obj.fanzahl;
+        t[53].row.add([obj.stunde,obj.spiegel_nr,obj.fehler,obj.ganzahl, obj.fanzahl ]).draw();  
+});
+    if(s1+s2>0) {
+         o1 = {category:obst, value1:s1, value2:s2};
+        gsum=gsum + s1;  
+        fsum=fsum + s2;
+        rr.push(o1);
+    }
+    if (0 == rr.length) {    
+           showIndiNoData('53');
+        }
+     //##############################################################
+    if(v != stunde) {
+        charts['chartdiv53'] .data =  rr;
+        stunde = v;
+    } 
+    $("#gt53").text(gsum.toString());
+    $("#fe53").text(fsum.toString());
+    });       
+      
+socket.on('result54', function(myres) {
+    t[54].clear().draw();
+     $("#idbw").css("background","#ccc");     
+    //  
+        if (indicator[sBand]) {hideIndicator(sBand);}
+   //++++++++++++++++++++++++++      
+    a = new Date();
+    b = a.getHours(); c = a.getMinutes(); d = a.getSeconds();
+    if(b < 10){b = '0'+b;} 
+    if(c < 10){c = '0'+c;} 
+    if(d < 10){d = '0'+d;}
+    zeit = b+':'+c+':'+d;
+    $('#timestamp54').text(zeit);
+    //++++++++++++++++++++++++++
+     rr = [];  
+    var gsum=0;
+    var fsum=0;
+    var obst=0;
+    var s1=0;
+    var s2=0;
+         myres.forEach(function(obj){
+        if(obst==0) obst=obj.stunde;     
+        if(obj.stunde!=obst){
+        //o1 = {category:obj.stunde, value1:obj.ganzahl, value2:obj.fanzahl};
+            o1 = {category:obst, value1:s1, value2:s2};
+        std = obst;  //obj.stunde;
+        gan = s1;  //obj.ganzahl;
+        gsum=gsum + gan;    
+        if(gan == 0 ) gan=null;     
+        fan = s2;  //obj.fanzahl;
+        fsum=fsum + fan;    
+        if(fan == 0 ) fan=null;
+       //  console.log(pad(std,2)+"#" +pad(gan,3)+"#" +pad(fan,3));
+        v = pad(std,2)+pad(gan,3)+pad(fan,3);
+       // console.log("VV:" + v);     
+        rr.push(o1);
+        s1=0;
+        s2=0;    
+        } 
+            obst=obj.stunde;
+            s1=s1+obj.ganzahl;
+            s2=s2+obj.fanzahl;
+        t[54].row.add([obj.stunde,obj.spiegel_nr,obj.fehler,obj.ganzahl, obj.fanzahl ]).draw();  
+});
+    if(s1+s2>0) {
+         o1 = {category:obst, value1:s1, value2:s2};
+        gsum=gsum + s1;  
+        fsum=fsum + s2;
+        rr.push(o1);
+    }
+    if (0 == rr.length) {    
+           showIndiNoData('54');
+        }
+     //##############################################################
+    if(v != stunde) {
+        charts['chartdiv54'] .data =  rr;
+        stunde = v;
+    } 
+    $("#gt54").text(gsum.toString());
+    $("#fe54").text(fsum.toString());
+    });       
+            
+  
+socket.on('result55', function(myres) {
+    t[55].clear().draw();
+     $("#idbw").css("background","#ccc");     
+    //  
+        if (indicator[sBand]) {hideIndicator(sBand);}
+   //++++++++++++++++++++++++++      
+    a = new Date();
+    b = a.getHours(); c = a.getMinutes(); d = a.getSeconds();
+    if(b < 10){b = '0'+b;} 
+    if(c < 10){c = '0'+c;} 
+    if(d < 10){d = '0'+d;}
+    zeit = b+':'+c+':'+d;
+    $('#timestamp55').text(zeit);
+    //++++++++++++++++++++++++++
+     rr = [];    
+    var gsum=0;
+    var fsum=0;
+    var obst=0;
+    var s1=0;
+    var s2=0;
+         myres.forEach(function(obj){
+        if(obst==0) obst=obj.stunde;     
+        if(obj.stunde!=obst){
+        //o1 = {category:obj.stunde, value1:obj.ganzahl, value2:obj.fanzahl};
+            o1 = {category:obst, value1:s1, value2:s2};
+        std = obst;  //obj.stunde;
+        gan = s1;  //obj.ganzahl;
+        gsum=gsum + gan;    
+        if(gan == 0 ) gan=null;     
+        fan = s2;  //obj.fanzahl;
+        fsum=fsum + fan;    
+        if(fan == 0 ) fan=null;
+       //  console.log(pad(std,2)+"#" +pad(gan,3)+"#" +pad(fan,3));
+        v = pad(std,2)+pad(gan,3)+pad(fan,3);
+       // console.log("VV:" + v);     
+        rr.push(o1);
+        s1=0;
+        s2=0;   
+        } 
+            obst=obj.stunde;
+            s1=s1+obj.ganzahl;
+            s2=s2+obj.fanzahl;
+            
+        t[55].row.add([obj.stunde,obj.spiegel_nr,obj.fehler,obj.ganzahl, obj.fanzahl ]).draw();  
+});
+    if(s1+s2>0) {
+        o1 = {category:obst, value1:s1, value2:s2};
+        gsum=gsum + s1;  
+        fsum=fsum + s2;
+        rr.push(o1);
+    }
+    if (0 == rr.length) {    
+           showIndiNoData('55');
+        }
+     //##############################################################
+    if(v != stunde) {
+        charts['chartdiv55'] .data =  rr;
+        stunde = v;
+    } 
+   //  console.log("GUT::" + gsum + "<<>>" + fsum);
+    $("#gt55").text(gsum.toString());
+    $("#fe55").text(fsum.toString());
+    });       
+    
+   socket.on('result56alt', function(myres) {
+     $("#idbw").css("background","#ccc");     
+    //  
+        if (indicator[sBand]) {hideIndicator(sBand);}
+    //++++++++++++++++++++++++++      
+    a = new Date();
+    b = a.getHours(); c = a.getMinutes(); d = a.getSeconds();
+    if(b < 10){b = '0'+b;} 
+    if(c < 10){c = '0'+c;} 
+    if(d < 10){d = '0'+d;}
+    zeit = b+':'+c+':'+d;
+    $('#timestamp56').text(zeit);
+    //++++++++++++++++++++++++++
+     rr = [];     
+         myres.forEach(function(obj){
+        o1 = {category:obj.stunde, value1:obj.ganzahl, value2:obj.fanzahl};
+        std = obj.stunde;
+        gan = obj.ganzahl;
+        if(gan == 0 ) gan=null;     
+        fan = obj.fanzahl;
+        if(fan == 0 ) fan=null;
+        
+         console.log(pad(std,2)+"#" +pad(gan,3)+"#" +pad(fan,3));
+        v = pad(std,2)+pad(gan,3)+pad(fan,3);
+       // console.log("VV:" + v);     
+        rr.push(o1);
+});
+       if (0 == rr.length) {    
+           showIndiNoData('56');
+        }
+     //##############################################################
+    if(v != stunde) {
+        charts['chartdiv56'] .data =  rr;
+        stunde = v;
+    } 
+    }); 
+    
+socket.on('result56', function(myres) {
+    t[56].clear().draw();
+     $("#idbw").css("background","#ccc");     
+    //  
+        if (indicator[sBand]) {hideIndicator(sBand);}
+   //++++++++++++++++++++++++++      
+    a = new Date();
+    b = a.getHours(); c = a.getMinutes(); d = a.getSeconds();
+    if(b < 10){b = '0'+b;} 
+    if(c < 10){c = '0'+c;} 
+    if(d < 10){d = '0'+d;}
+    zeit = b+':'+c+':'+d;
+    $('#timestamp56').text(zeit);
+    //++++++++++++++++++++++++++
+     rr = [];    
+    var gsum=0;
+    var fsum=0;
+    var obst=0;
+    var s1=0;
+    var s2=0;
+         myres.forEach(function(obj){
+        if(obst==0) obst=obj.stunde;     
+        if(obj.stunde!=obst){
+        //o1 = {category:obj.stunde, value1:obj.ganzahl, value2:obj.fanzahl};
+            o1 = {category:obst, value1:s1, value2:s2};
+        std = obst;  //obj.stunde;
+        gan = s1;  //obj.ganzahl;
+        gsum=gsum + gan;    
+        if(gan == 0 ) gan=null;     
+        fan = s2;  //obj.fanzahl;
+        fsum=fsum + fan;    
+        if(fan == 0 ) fan=null;
+       //  console.log(pad(std,2)+"#" +pad(gan,3)+"#" +pad(fan,3));
+        v = pad(std,2)+pad(gan,3)+pad(fan,3);
+       // console.log("VV:" + v);     
+        rr.push(o1);
+        s1=0;
+        s2=0;    
+        } 
+            obst=obj.stunde;
+            s1=s1+obj.ganzahl;
+            s2=s2+obj.fanzahl;
+        t[56].row.add([obj.stunde,obj.spiegel_nr,obj.fehler,obj.ganzahl, obj.fanzahl ]).draw();  
+});
+    if(s1+s2>0) {
+        o1 = {category:obst, value1:s1, value2:s2};
+        gsum=gsum + s1;  
+        fsum=fsum + s2;
+        rr.push(o1);
+    }
+    if (0 == rr.length) {    
+           showIndiNoData('56');
+        }
+     //##############################################################
+    if(v != stunde) {
+        charts['chartdiv56'] .data =  rr;
+        stunde = v;
+    } 
+    $("#gt56").text(gsum.toString());
+    $("#fe56").text(fsum.toString());
+    });     
+    
+socket.on('result57alt', function(myres) {
+     $("#idbw").css("background","#ccc");     
+    //  
+        if (indicator[sBand]) {hideIndicator(sBand);}
+   //++++++++++++++++++++++++++      
+    a = new Date();
+    b = a.getHours(); c = a.getMinutes(); d = a.getSeconds();
+    if(b < 10){b = '0'+b;} 
+    if(c < 10){c = '0'+c;} 
+    if(d < 10){d = '0'+d;}
+    zeit = b+':'+c+':'+d;
+    $('#timestamp57').text(zeit);
+    //++++++++++++++++++++++++++
+     rr = [];     
+         myres.forEach(function(obj){
+        o1 = {category:obj.stunde, value1:obj.ganzahl, value2:obj.fanzahl};
+        std = obj.stunde;
+        gan = obj.ganzahl;
+        if(gan == 0 ) gan=null;     
+        fan = obj.fanzahl;
+        if(fan == 0 ) fan=null;
+         console.log(pad(std,2)+"#" +pad(gan,3)+"#" +pad(fan,3));
+        v = pad(std,2)+pad(gan,3)+pad(fan,3);
+       // console.log("VV:" + v);     
+        rr.push(o1);
+});
+    if (0 == rr.length) {    
+           showIndiNoData('57');
+        }
+     //##############################################################
+    if(v != stunde) {
+        charts['chartdiv57'] .data =  rr;
+        stunde = v;
+    } 
+    });       
+    
+socket.on('result57', function(myres) {
+    t[57].clear().draw();
+     $("#idbw").css("background","#ccc");     
+    //  
+        if (indicator[sBand]) {hideIndicator(sBand);}
+   //++++++++++++++++++++++++++      
+    a = new Date();
+    b = a.getHours(); c = a.getMinutes(); d = a.getSeconds();
+    if(b < 10){b = '0'+b;} 
+    if(c < 10){c = '0'+c;} 
+    if(d < 10){d = '0'+d;}
+    zeit = b+':'+c+':'+d;
+    $('#timestamp57').text(zeit);
+    //++++++++++++++++++++++++++
+     rr = [];  
+    var gsum=0;
+    var fsum=0;
+    var obst=0;
+    var s1=0;
+    var s2=0;
+         myres.forEach(function(obj){
+        if(obst==0) obst=obj.stunde;     
+        if(obj.stunde!=obst){
+        //o1 = {category:obj.stunde, value1:obj.ganzahl, value2:obj.fanzahl};
+            o1 = {category:obst, value1:s1, value2:s2};
+        std = obst;  //obj.stunde;
+        gan = s1;  //obj.ganzahl;
+        gsum=gsum + gan;    
+        if(gan == 0 ) gan=null;     
+        fan = s2;  //obj.fanzahl;
+        fsum=fsum + fan;    
+        if(fan == 0 ) fan=null;
+       //  console.log(pad(std,2)+"#" +pad(gan,3)+"#" +pad(fan,3));
+        v = pad(std,2)+pad(gan,3)+pad(fan,3);
+       // console.log("VV:" + v);     
+        rr.push(o1);
+        s1=0;
+        s2=0;    
+        } 
+            obst=obj.stunde;
+            s1=s1+obj.ganzahl;
+            s2=s2+obj.fanzahl;
+        t[57].row.add([obj.stunde,obj.spiegel_nr,obj.fehler,obj.ganzahl, obj.fanzahl ]).draw();  
+});
+    if(s1+s2>0) {
+        o1 = {category:obst, value1:s1, value2:s2};
+        gsum=gsum + s1;  
+        fsum=fsum + s2;
+        rr.push(o1);
+    }
+    if (0 == rr.length) {    
+           showIndiNoData('57');
+        }
+     //##############################################################
+    if(v != stunde) {
+        charts['chartdiv57'] .data =  rr;
+        stunde = v;
+    } 
+    $("#gt57").text(gsum.toString());
+    $("#fe57").text(fsum.toString());
+    });  
+    
+    
+socket.on('result58alt', function(myres) {
+     $("#idbw").css("background","#ccc");     
+    //  
+        if (indicator[sBand]) {hideIndicator(sBand);}
+   //++++++++++++++++++++++++++      
+    a = new Date();
+    b = a.getHours(); c = a.getMinutes(); d = a.getSeconds();
+    if(b < 10){b = '0'+b;} 
+    if(c < 10){c = '0'+c;} 
+    if(d < 10){d = '0'+d;}
+    zeit = b+':'+c+':'+d;
+    $('#timestamp58').text(zeit);
+    //++++++++++++++++++++++++++
+     rr = [];     
+         myres.forEach(function(obj){
+        o1 = {category:obj.stunde, value1:obj.ganzahl, value2:obj.fanzahl};
+        std = obj.stunde;
+        gan = obj.ganzahl;
+        if(gan == 0 ) gan=null;     
+        fan = obj.fanzahl;
+        if(fan == 0 ) fan=null;
+         console.log(pad(std,2)+"#" +pad(gan,3)+"#" +pad(fan,3));
+        v = pad(std,2)+pad(gan,3)+pad(fan,3);
+       // console.log("VV:" + v);     
+        rr.push(o1);
+});
+    if (0 == rr.length) {    
+           showIndiNoData('58');
+        }
+     //##############################################################
+    if(v != stunde) {
+        
+        charts['chartdiv58'] .data =  rr;
+        stunde = v;
+    } 
+    });   
+    
+socket.on('result58', function(myres) {
+    t[58].clear().draw();
+     $("#idbw").css("background","#ccc");     
+    //  
+        if (indicator[sBand]) {hideIndicator(sBand);}
+   //++++++++++++++++++++++++++      
+    a = new Date();
+    b = a.getHours(); c = a.getMinutes(); d = a.getSeconds();
+    if(b < 10){b = '0'+b;} 
+    if(c < 10){c = '0'+c;} 
+    if(d < 10){d = '0'+d;}
+    zeit = b+':'+c+':'+d;
+    $('#timestamp58').text(zeit);
+    //++++++++++++++++++++++++++
+     rr = []; 
+    var gsum=0;
+    var fsum=0;
+    var obst=0;
+    var s1=0;
+    var s2=0;
+         myres.forEach(function(obj){
+        if(obst==0) obst=obj.stunde;     
+        if(obj.stunde!=obst){
+        //o1 = {category:obj.stunde, value1:obj.ganzahl, value2:obj.fanzahl};
+            o1 = {category:obst, value1:s1, value2:s2};
+        std = obst;  //obj.stunde;
+        gan = s1;  //obj.ganzahl;
+        gsum=gsum + gan;    
+        if(gan == 0 ) gan=null;     
+        fan = s2;  //obj.fanzahl;
+        fsum=fsum + fan;    
+        if(fan == 0 ) fan=null;
+       //  console.log(pad(std,2)+"#" +pad(gan,3)+"#" +pad(fan,3));
+        v = pad(std,2)+pad(gan,3)+pad(fan,3);
+       // console.log("VV:" + v);     
+        rr.push(o1);
+        s1=0;
+        s2=0;    
+        } 
+            obst=obj.stunde;
+            s1=s1+obj.ganzahl;
+            s2=s2+obj.fanzahl;
+        t[58].row.add([obj.stunde,obj.spiegel_nr,obj.fehler,obj.ganzahl, obj.fanzahl ]).draw();  
+});
+    if(s1+s2>0) {
+        o1 = {category:obst, value1:s1, value2:s2};
+        gsum=gsum + s1;  
+        fsum=fsum + s2;
+        rr.push(o1);
+    }
+    if (0 == rr.length) {    
+           showIndiNoData('58');
+        }
+     //##############################################################
+    if(v != stunde) {
+        charts['chartdiv58'] .data =  rr;
+        stunde = v;
+    } 
+    $("#gt58").text(gsum.toString());
+    $("#fe58").text(fsum.toString());
+    });      
+    
+ socket.on('res2', function(myres2) {
+//     console.log("RES-2::" + table.rows.length);
+if(table.rows.length>0) {
+     for(var i = table. rows. length - 1; i > 0; i--)
+{
+table. deleteRow(i);
+} 
+}
+   myres2.forEach(function(obj){  
+      // console.log("F:::" + obj.fehler);
+   
+$("#table").css("visibility","visible");  
+     var newRow = table.insertRow(table.rows.length); 
+     var cell = newRow.insertCell(0);
+     cell.innerHTML = obj.stunde;   
+     cell = newRow.insertCell(1);   
+     cell.innerHTML = obj.spiegel_nr;
+     cell = newRow.insertCell(2);    
+     cell.innerHTML = obj.fehler; 
+     cell = newRow.insertCell(3);    
+     cell.innerHTML = obj.ganzahl; 
+     cell = newRow.insertCell(4);    
+     cell.innerHTML = obj.fanzahl;   
+   });  
+ })  //ende myres2
+
+     socket.on('sStation', function(res2) {
+    //    console.log("RRRRRRRR::" + res2);
+        var arr = res2.split(";"); 
+         sBand = arr[0];
+          var ii=0;
+        var ix=0;
+        var iy=45;
+        var a1 = arr.length; 
+         var icol=4;
+         if(a1<icol) icol=a1;
+        var irow=Math.ceil(a1/icol);
+        console.log(arr.length + "==>" + irow);
+        var ir=0;
+        var ic=0;
+        var ps=['left-top','center'];
+        var res2 = "13;14;24;46";
+        var res2a = "13;14;24;46;47;49;51;52;53;54;55;56";
+        var width = window.innerWidth*0.985;
+        var height = window.innerHeight*0.7;
+        height =height- (45*(irow-1));
+        
+        var ph = Math.round(height/irow);
+        var pw = Math.round(width/icol);
+          console.log(width+"<>"+height+"----"+pw+"<>"+ph);
+         arr.forEach(function(obj){ 
+               // create a default jsPanel
+        if(ic==icol) {  
+              ic=0;
+              ir++; 
+              iy = 45 + (ir*(ph+60));
+            }
+            ix = ic*(pw+5);  
+            ic++;    
+        jsPanel.create({
+      //      theme: 'crimson filled',    //komplett in red
+     //       theme:       'info filled',   //komplett in blue
+            iconfont:    'fal',
+            borderRadius: '0.5rem',
+            id:function id() { return "jsPanel-".concat(jsPanel.id=obj); },
+            position: {my: 'left-top', at: 'left-top',
+                        offsetX: function o() { return ix;},
+                        offsetY: function o() { return iy;}
+            },    
+             contentOverflow: 'hidden scroll',
+        contentSize: { width: pw,  height: ph },
+     /*    footerToolbar: '<!--b style="color:#E4E4E4">Typ:</b>&nbsp;<select id="SMod" onchange=""><option value="na">--</option>' +
+    '<option value="1">1</option><option value="2" selected>2</option><option value="3">3</option></select-->'  */
+        footerToolbar:  '<div id="legdiv'+ obj + '" style="top:-5px;width:80%;height:24px;right:5px;font-size:0.925em;"></div>'
+             + '<div  id="timestamp'+obj+'"  style="top:-5px; font-family:arial; font-size:0.925em; color: darkgray">18:23</div>',
+
+            headerControls: { smallify:'remove', close: 'remove',size: 'sm'} ,
+  //          headerTitle: 'Band <b>' + obj +'</b>   -      <select id="oScht'+obj+'" onchange="scht'+obj+'.click()"><option value="'+obj+'">--</option>' +
+ //   '<option value="FS">FS</option><option value="MS">MS</option><option value="NS">NS</option></select>',
+headerTitleALT: 'Band <b>' + obj +'</b>   -      <select id="oScht'+obj+'" onchange="scht'+obj+'.click()"><option value="'+obj+'">--</option>' +
+    '<option value="FS0">FS 0:00-05:00</option>' +       
+    '<option value="FS1">FS 5:00-13:00</option><option value="FS2">FS 5:00-13:30</option><option value="MS1">MS 13:00-21:00</option><option value="MS2">MS 13:30-22:00</option><option value="NS0">NS  20:50-04:50</option><option value="NS1">NS  21:00-05:00</option><option value="NS2">NS  22:00-05:00</option></select>',
+headerTitle: 'Band <b>' + obj +'</b>   -      <select id="oScht'+obj+'" onchange="scht'+obj+'.click()"><option value="'+obj+'">--</option>' +
+	'<option value="AM0">AM 0:01-04:50</option><option value="FS4">FS 4:40-13:10</option>' +
+    '<option value="FS0">FS 4:50-12:50</option><option value="FS1">FS 5:00-13:00</option><option value="FS2">FS 5:00-13:30</option><option value="FS3">FS 5:10-13:10</option><option value="FS5">FS 5:00-15:30</option>' +
+	'<option value="MS0">MS 12:50-20:50</option><option value="MS1">MS 13:00-21:00</option><option value="MS2">MS 13:30-22:00</option><option value="MS3">MS 13:10-21:10</option>' + 
+	'<option value="MS5">MS 13:20-21:50</option><option value="MS4">MS 13:30-23:59</option>' +
+	'<option value="NS0">NS  20:50-04:50</option><option value="NS1">NS  21:00-05:00</option><option value="NS2">NS  22:00-05:00</option><option value="NS3">NS  21:10-05:10</option></select>' +
+    //20201202
+    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +         
+    '<span id="gt'+obj+'" style="font-weight:bold;font-size:1.5em;color: green"></span>' + '&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;'+
+    '<span id="fe'+obj+'" style="font-weight:bold;font-size:1.5em;color: red;padding-right:120px;"></span>' ,
+
+      //      content: '<div id="chartdiv'+obj+'"></div>',
+            content: '<div id="chartdiv'+obj+'"></div><div id="tab'+obj+'"><table id="data'+obj+'" class="display" width="100%"><!--thead><tr><td>Stunde</td><td>2</td><td>3</td><td>4</td><td>5</td></tr></thead--></table></div>',
+            onfronted: function(panel, status){
+                console.log("PAN::::" + this.id.substring(8));
+                sBand=this.id.substring(8);
+  }
+        });
+            ch_(obj);
+            tab_(obj); 
+            ii++;
+          
+             
+         }); 
+    });
+   
+})()
+        
+//var indicator;
+//var indicatorInterval;
+
+function ch_(i) {
+//am4core.useTheme(am4themes_animated);
+am4core.useTheme(am4themes_dataviz);
+var aa= [];
+var rr= [];
+var stunde = "00000000";
+var std = "";
+var gan;
+var fan;
+var v = "";
+var cellSize = 33;
+
+console.log("CHART::"+i);
+    charts['chartdiv'+i] = am4core.create("chartdiv"+i, am4charts.XYChart3D);
+    charts['chartdiv'+i].background.fill = '#c8c8c8';  //'#00f';
+charts['chartdiv'+i].background.opacity = 0.6;  //0.3;
+charts['chartdiv'+i].width = am4core.percent(100);
+
+//charts['chartdiv'+i].width = $('#component1').width();  // am4core.percent(60);
+//charts['chartdiv'+i].height = $('#component1').height();            
+/* Create a separate container to put legend in 
+var legendContainer = am4core.create("legenddiv", am4core.Container);
+legendContainer.width = am4core.percent(100);
+legendContainer.height = am4core.percent(100);  */
+charts['chartdiv'+i].events.on("validateNow", function(ev) {
+  console.log("vlaNOW:::");
+ 
+});
+   
+// Set cell size in pixels
+
+charts['chartdiv'+i].events.on("datavalidated", function(ev) {
+  var chart = ev.target;
+  
+  var categoryAxis = charts['chartdiv'+i].yAxes.getIndex(0);
+
+  // Calculate how we need to adjust chart height
+  var adjustHeight = charts['chartdiv'+i].data.length * cellSize - categoryAxis.pixelHeight;
+
+  // get current chart height
+  var targetHeight = charts['chartdiv'+i].pixelHeight + adjustHeight;
+
+  // Set it on chart's container
+//  charts['chartdiv'+i].svgContainer.htmlElement.style.height = targetHeight + "px";
+    charts['chartdiv'+i].svgContainer.htmlElement.style.height = am4core.percent(80);  //mit TABI - ohne 100
+  // Set it on chart's container
+ 
+  charts['chartdiv'+i].svgContainer.htmlElement.style.width =   $('#component1').width() + "px"; //"1500px";  //"1200px";  
+    
+});
+
+//series.columns.template.events.on("hit", function(event){
+charts['chartdiv'+i].events.on("doublehit", function(event){
+    //const val = event.target.dataItem.index; // dataItem.value1;
+    //console.log("Bar CLICK::" + val);
+    console.log("clicked on ", event.target);
+   // console.log(event.target.dataItem.id);
+       
+/*  series.columns.each(function(column){
+    //REM: Deactivate all non clicked columns
+    if(column !== event.target){
+      column.setState("default");
+      column.isActive = false
+    }
+    //REM: Toggle the clicked column
+    else{
+      column.isActive = !column.isActive
+    }
+  })  */
+});
+
+  
+
+//20200103
+//charts['chartdiv'+i].padding(30, 30, 10, 30);
+    charts['chartdiv'+i].padding(3, 3, 1, 3);
+charts['chartdiv'+i].legend = new am4charts.Legend();
+/* Create legend */
+//chart.legend = new am4charts.Legend();
+var sl='legdiv'+i;    
+var legendContainer = am4core.create(sl, am4core.Container);
+legendContainer.width = am4core.percent(100);
+legendContainer.height = am4core.percent(100);
+
+charts['chartdiv'+i].legend.parent = legendContainer;    
+//chart.legend = new am4charts.Legend();
+charts['chartdiv'+i].legend.useDefaultMarker = true;
+var markerTemplate = charts['chartdiv'+i].legend.markers.template;
+markerTemplate.width = 13;
+markerTemplate.height = 13;    
+var marker = charts['chartdiv'+i].legend.markers.template.children.getIndex(0);
+//marker.cornerRadius(12, 12, 12, 12);
+marker.cornerRadius(8, 8, 8, 8);
+marker.strokeWidth = 2;
+marker.strokeOpacity = 1;
+marker.stroke = am4core.color("#ccc");  
+//    var marker1 = charts['chartdiv'+i].legend.markers.template;
+//marker1.disposeChildren();    
+   
+charts['chartdiv'+i].resizeCategoryWidth = 10;
+charts['chartdiv'+i].colors.step = 2;
+
+var categoryAxis = charts['chartdiv'+i].xAxes.push(new am4charts.CategoryAxis());
+categoryAxis.dataFields.category = "category";
+categoryAxis.renderer.minGridDistance = 60;
+categoryAxis.renderer.grid.template.location = 0;
+categoryAxis.interactionsEnabled = false;
+//20200103    
+categoryAxis.renderer.fontSize = 12;
+    
+var valueAxis = charts['chartdiv'+i].yAxes.push(new am4charts.ValueAxis());
+valueAxis.tooltip.disabled = true;
+valueAxis.renderer.grid.template.strokeOpacity = 0.05;
+valueAxis.renderer.minGridDistance = 20;
+valueAxis.interactionsEnabled = false;
+valueAxis.min = 0;
+valueAxis.renderer.minWidth = 35;
+//20200103     
+valueAxis.renderer.fontSize = 12;
+    
+var series1 = charts['chartdiv'+i].series.push(new am4charts.ColumnSeries3D());
+//var series1 = charts['chartdiv'+i].series.push(new am4charts.ConeSeries());
+series1.columns.template.width = am4core.percent(80);
+series1.columns.template.tooltipText = "{name}: {valueY.value}";
+series1.name = "n.i.O.";
+series1.dataFields.categoryX = "category";
+series1.dataFields.valueY = "value2";
+series1.stacked = true;
+//series1.columns.template.width = am4core.percent(100);
+/*    
+var bullet1 = series1.bullets.push(new am4charts.LabelBullet());
+bullet1.label.text = "{value2}";
+bullet1.label.fill = am4core.color("#ffffff");
+bullet1.locationY = 0.5;
+*/
+    
+var series2 = charts['chartdiv'+i].series.push(new am4charts.ColumnSeries3D());
+//var series2 = charts['chartdiv'+i].series.push(new am4charts.ConeSeries());
+series2.columns.template.width = am4core.percent(80);
+series2.columns.template.tooltipText = "{name}: {valueY.value}";
+series2.name = "i.O.";
+series2.dataFields.categoryX = "category";
+series2.dataFields.valueY = "value1";
+series2.stacked = true;
+
+var bullet2 = series2.bullets.push(new am4charts.LabelBullet());
+bullet2.label.text = "{value1}";
+bullet2.label.fill = am4core.color("#13bb1d");
+bullet2.locationY = 0.15;
+bullet2.label.fontSize=12;    
+    
+  charts['chartdiv'+i].events.on('resize', (ev) => {
+        console.log("CHART_RESIZE");
+      charts['chartdiv'+i].width = $('#component1').width(); 
+
+        });
+}      
+
+function tab_(i) { 
+     
+        t[i] = $('#data'+i).DataTable( {
+        bAutoWidth: false,
+        processing: true,
+        destroy: true,
+        bRetrieve: false,
+        //"scrollX": true,
+        "sScrollY": "15vh",
+        //"sScrollX": "100%",    
+        data: rr, 
+        "paging":   false,
+        "info":     false, 
+        "searching": false,
+		columns: [
+            { title: "stunde", width: '20px'},
+            { title: "spiegel", width: '30px'},
+            { title: "fehler", width: '20px' },
+            { title: "i.O.", width: '20px'},
+            { title: "n.i.O.", width: '20px'}
+		] ,
+        "createdRow": function ( row, data, index ) {
+            //console.log("rowIDX:::" + dataHdr.indexOf("iostatus"));
+            //var ix1=dataHdr.indexOf("iostatus");
+            //var ix2=dataHdr.indexOf("fehlernr");
+      //     if ( data[2].replace(/[\$,]/g, '') * 1 > 0 ) {
+             if ( data[2] * 1 > 0 ) {
+                $('td', row).eq(2).addClass('nio');
+                $('td', row).eq(4).addClass('nio');
+            } else {
+                $('td', row).eq(2).addClass('io');
+                $('td', row).eq(3).addClass('io');
+            } 
+        }    
+    });  
+ 
+/*  if(i==56) {
+        t56 = $('#data56').DataTable( {
+        bAutoWidth: false,
+        processing: true,
+        destroy: true,
+        bRetrieve: false,
+        data: rr, 
+        "paging":   false,
+        "info":     false, 
+        "searching": false,
+		columns: [
+            { title: "stunde", width: '20px'},
+            { title: "spiegel", width: '30px'},
+            { title: "fehler", width: '20px' },
+            { title: "i.O.", width: '20px'},
+            { title: "n.i.O.", width: '20px'}
+		],
+        "createdRow": function ( row, data, index ) {
+            //console.log("rowIDX:::" + dataHdr.indexOf("iostatus"));
+            //var ix1=dataHdr.indexOf("iostatus");
+            //var ix2=dataHdr.indexOf("fehlernr");
+            if ( data[2].replace(/[\$,]/g, '') * 1 > 0 ) {
+                $('td', row).eq(2).addClass('nio');
+                $('td', row).eq(4).addClass('nio');
+            } else {
+                $('td', row).eq(2).addClass('io');
+                $('td', row).eq(3).addClass('io');
+            }
+        }    
+    });  
+  } */
+/*  if(i==57) {
+        t57 = $('#data57').DataTable( {
+        bAutoWidth: false,
+        processing: true,
+        destroy: true,
+        bRetrieve: false,
+        data: rr, 
+        "paging":   false,
+        "info":     false, 
+        "searching": false,
+		columns: [
+            { title: "stunde", width: '20px'},
+            { title: "spiegel", width: '30px'},
+            { title: "fehler", width: '20px' },
+            { title: "i.O.", width: '20px'},
+            { title: "n.i.O.", width: '20px'}
+		]  
+    });  
+  }  */
+}
+
+function showIndicator(bdnr) {
+  
+  if (!indicator[bdnr]) {
+    //var 
+    indicator[bdnr] = charts['chartdiv'+bdnr] .tooltipContainer.createChild(am4core.Container);
+    indicator[bdnr].background.fill = am4core.color("#fff");
+    indicator[bdnr].background.fillOpacity = 0.8;
+    indicator[bdnr].width = am4core.percent(100);
+    indicator[bdnr].height = am4core.percent(100);
+
+    indicatorLabel[bdnr] = indicator[bdnr].createChild(am4core.Label);
+    indicatorLabel[bdnr].text = "Daten werden geladen ...";
+    indicatorLabel[bdnr].align = "center";
+    indicatorLabel[bdnr].valign = "middle";
+    indicatorLabel[bdnr].fontSize = 20;
+    indicatorLabel[bdnr].dy = 50;
+    
+    hourglass[bdnr] = indicator[bdnr].createChild(am4core.Image);
+  //  hourglass.href = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-160/hourglass.svg";
+     hourglass[bdnr].href = "hourglass.svg";  
+    hourglass[bdnr].align = "center";
+    hourglass[bdnr].valign = "middle";
+    hourglass[bdnr].horizontalCenter = "middle";
+    hourglass[bdnr].verticalCenter = "middle";
+    hourglass[bdnr].scale = 0.7;
+  }
+ /*   let lbl14 = charts['chartdiv14'].createChild(am4core.Label);
+lbl14.text = "Keine Daten vorhanden";
+lbl14.fontSize = 20;
+lbl14.align = "center";
+lbl14.align = "center";
+lbl14.isMeasured = false;
+lbl14.x = 70;
+lbl14.y = 60;    */
+  
+  indicator[bdnr].hide(0);
+  indicator[bdnr].show();
+  //indicator14a.hide();    
+  
+  clearInterval(indicatorInterval[bdnr]);
+  indicatorInterval[bdnr] = setInterval(function() {
+    hourglass[bdnr].animate([{
+      from: 0,
+      to: 360,
+      property: "rotation"
+    }], 2000);
+  }, 3000);
+}          
+        
+ 
+function showIndiNoData(bdnr) {
+  console.log("indiNoData::" + bdnr);
+  if (!indiNoData[bdnr]) {
+    //var 
+    indiNoData[bdnr] = charts['chartdiv'+bdnr] .tooltipContainer.createChild(am4core.Container);
+    indiNoData[bdnr].background.fill = am4core.color("#fff");
+    indiNoData[bdnr].background.fillOpacity = 0.08;
+    indiNoData[bdnr].width = am4core.percent(100);
+    indiNoData[bdnr].height = am4core.percent(100);
+  }
+    indiNoDataLbl[bdnr] = indiNoData[bdnr].createChild(am4core.Label);
+    indiNoDataLbl[bdnr].text = "Keine Daten";
+    indiNoDataLbl[bdnr].align = "center";
+    indiNoDataLbl[bdnr].valign = "middle";
+    indiNoDataLbl[bdnr].fontSize = 20;
+    indiNoDataLbl[bdnr].dy = 50;
+    
+  
+  indiNoData[bdnr].hide(0);
+  //indicator14a.show();
+  indiNoData[bdnr].show();
+ 
+}  
+                
+
+                           
+        
+function showIndicator24() {
+  
+  if (!indicator24) {
+    //var 
+    indicator24 = charts['chartdiv24'] .tooltipContainer.createChild(am4core.Container);
+    indicator24.background.fill = am4core.color("#fff");
+    indicator24.background.fillOpacity = 0.8;
+    indicator24.width = am4core.percent(100);
+    indicator24.height = am4core.percent(100);
+
+    var indicatorLabel24 = indicator24.createChild(am4core.Label);
+    indicatorLabel24.text = "Daten werden geladen ...";
+    indicatorLabel24.align = "center";
+    indicatorLabel24.valign = "middle";
+    indicatorLabel24.fontSize = 20;
+    indicatorLabel24.dy = 50;
+    
+    var hourglass = indicator24.createChild(am4core.Image);
+  //  hourglass.href = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-160/hourglass.svg";
+     hourglass.href = "hourglass.svg";  
+    hourglass.align = "center";
+    hourglass.valign = "middle";
+    hourglass.horizontalCenter = "middle";
+    hourglass.verticalCenter = "middle";
+    hourglass.scale = 0.7;
+  }
+  
+  indicator24.hide(0);
+  indicator24.show();
+  
+  clearInterval(indicatorInterval24);
+  indicatorInterval24 = setInterval(function() {
+    hourglass.animate([{
+      from: 0,
+      to: 360,
+      property: "rotation"
+    }], 2000);
+  }, 3000);
+}             
+ 
+function showIndicator51() {
+  
+  if (!indicator51) {
+    //var 
+    indicator51 = charts['chartdiv51'] .tooltipContainer.createChild(am4core.Container);
+    indicator51.background.fill = am4core.color("#fff");
+    indicator51.background.fillOpacity = 0.8;
+    indicator51.width = am4core.percent(100);
+    indicator51.height = am4core.percent(100);
+
+    var indicatorLabel51 = indicator51.createChild(am4core.Label);
+    indicatorLabel51.text = "Daten werden geladen ...";
+    indicatorLabel51.align = "center";
+    indicatorLabel51.valign = "middle";
+    indicatorLabel51.fontSize = 20;
+    indicatorLabel51.dy = 50;
+    
+    var hourglass = indicator51.createChild(am4core.Image);
+  //  hourglass.href = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-160/hourglass.svg";
+     hourglass.href = "hourglass.svg";  
+    hourglass.align = "center";
+    hourglass.valign = "middle";
+    hourglass.horizontalCenter = "middle";
+    hourglass.verticalCenter = "middle";
+    hourglass.scale = 0.7;
+  }
+  
+  indicator51.hide(0);
+  indicator51.show();
+  
+  clearInterval(indicatorInterval51);
+  indicatorInterval51 = setInterval(function() {
+    hourglass.animate([{
+      from: 0,
+      to: 360,
+      property: "rotation"
+    }], 2000);
+  }, 3000);
+}         
+function showIndicator52() {
+  
+  if (!indicator52) {
+    //var 
+    indicator52 = charts['chartdiv52'] .tooltipContainer.createChild(am4core.Container);
+    indicator52.background.fill = am4core.color("#fff");
+    indicator52.background.fillOpacity = 0.8;
+    indicator52.width = am4core.percent(100);
+    indicator52.height = am4core.percent(100);
+
+    var indicatorLabel52 = indicator52.createChild(am4core.Label);
+    indicatorLabel52.text = "Daten werden geladen ...";
+    indicatorLabel52.align = "center";
+    indicatorLabel52.valign = "middle";
+    indicatorLabel52.fontSize = 20;
+    indicatorLabel52.dy = 50;
+    
+    var hourglass = indicator52.createChild(am4core.Image);
+  //  hourglass.href = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-160/hourglass.svg";
+     hourglass.href = "hourglass.svg";  
+    hourglass.align = "center";
+    hourglass.valign = "middle";
+    hourglass.horizontalCenter = "middle";
+    hourglass.verticalCenter = "middle";
+    hourglass.scale = 0.7;
+  }
+  
+  indicator52.hide(0);
+  indicator52.show();
+  
+  clearInterval(indicatorInterval52);
+  indicatorInterval52 = setInterval(function() {
+    hourglass.animate([{
+      from: 0,
+      to: 360,
+      property: "rotation"
+    }], 2000);
+  }, 3000);
+}     
+        
+function showIndicator53() {
+  
+  if (!indicator53) {
+    //var 
+    indicator53 = charts['chartdiv54'] .tooltipContainer.createChild(am4core.Container);
+    indicator53.background.fill = am4core.color("#fff");
+    indicator53.background.fillOpacity = 0.8;
+    indicator53.width = am4core.percent(100);
+    indicator53.height = am4core.percent(100);
+
+    var indicatorLabel53 = indicator53.createChild(am4core.Label);
+    indicatorLabel53.text = "Daten werden geladen ...";
+    indicatorLabel53.align = "center";
+    indicatorLabel53.valign = "middle";
+    indicatorLabel53.fontSize = 20;
+    indicatorLabel53.dy = 50;
+    
+    var hourglass = indicator53.createChild(am4core.Image);
+  //  hourglass.href = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-160/hourglass.svg";
+     hourglass.href = "hourglass.svg";  
+    hourglass.align = "center";
+    hourglass.valign = "middle";
+    hourglass.horizontalCenter = "middle";
+    hourglass.verticalCenter = "middle";
+    hourglass.scale = 0.7;
+  }
+  
+  indicator53.hide(0);
+  indicator53.show();
+  
+  clearInterval(indicatorInterval53);
+  indicatorInterval53 = setInterval(function() {
+    hourglass.animate([{
+      from: 0,
+      to: 360,
+      property: "rotation"
+    }], 2000);
+  }, 3000);
+} 
+        
+function showIndicator54() {
+  
+  if (!indicator54) {
+    //var 
+    indicator54 = charts['chartdiv54'] .tooltipContainer.createChild(am4core.Container);
+    indicator54.background.fill = am4core.color("#fff");
+    indicator54.background.fillOpacity = 0.8;
+    indicator54.width = am4core.percent(100);
+    indicator54.height = am4core.percent(100);
+
+    var indicatorLabel54 = indicator54.createChild(am4core.Label);
+    indicatorLabel54.text = "Daten werden geladen ...";
+    indicatorLabel54.align = "center";
+    indicatorLabel54.valign = "middle";
+    indicatorLabel54.fontSize = 20;
+    indicatorLabel54.dy = 50;
+    
+    var hourglass = indicator54.createChild(am4core.Image);
+  //  hourglass.href = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-160/hourglass.svg";
+     hourglass.href = "hourglass.svg";  
+    hourglass.align = "center";
+    hourglass.valign = "middle";
+    hourglass.horizontalCenter = "middle";
+    hourglass.verticalCenter = "middle";
+    hourglass.scale = 0.7;
+  }
+  
+  indicator54.hide(0);
+  indicator54.show();
+  
+  clearInterval(indicatorInterval54);
+  indicatorInterval54 = setInterval(function() {
+    hourglass.animate([{
+      from: 0,
+      to: 360,
+      property: "rotation"
+    }], 2000);
+  }, 3000);
+}        
+        
+        
+function showIndicator55() {
+  
+  if (!indicator55) {
+    //var 
+    indicator55 = charts['chartdiv55'] .tooltipContainer.createChild(am4core.Container);
+    indicator55.background.fill = am4core.color("#fff");
+    indicator55.background.fillOpacity = 0.8;
+    indicator55.width = am4core.percent(100);
+    indicator55.height = am4core.percent(100);
+
+    var indicatorLabel55 = indicator55.createChild(am4core.Label);
+    indicatorLabel55.text = "Daten werden geladen ...";
+    indicatorLabel55.align = "center";
+    indicatorLabel55.valign = "middle";
+    indicatorLabel55.fontSize = 20;
+    indicatorLabel55.dy = 50;
+    
+    var hourglass = indicator55.createChild(am4core.Image);
+  //  hourglass.href = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-160/hourglass.svg";
+     hourglass.href = "hourglass.svg";  
+    hourglass.align = "center";
+    hourglass.valign = "middle";
+    hourglass.horizontalCenter = "middle";
+    hourglass.verticalCenter = "middle";
+    hourglass.scale = 0.7;
+  }
+  
+  indicator55.hide(0);
+  indicator55.show();
+  
+  clearInterval(indicatorInterval55);
+  indicatorInterval55 = setInterval(function() {
+    hourglass.animate([{
+      from: 0,
+      to: 360,
+      property: "rotation"
+    }], 2000);
+  }, 3000);
+}        
+
+function showIndicator56() {
+  
+  if (!indicator56) {
+    //var 
+    indicator56 = charts['chartdiv56'] .tooltipContainer.createChild(am4core.Container);
+    indicator56.background.fill = am4core.color("#fff");
+    indicator56.background.fillOpacity = 0.8;
+    indicator56.width = am4core.percent(100);
+    indicator56.height = am4core.percent(100);
+
+    var indicatorLabel56 = indicator56.createChild(am4core.Label);
+    indicatorLabel56.text = "Daten werden geladen ...";
+    indicatorLabel56.align = "center";
+    indicatorLabel56.valign = "middle";
+    indicatorLabel56.fontSize = 20;
+    indicatorLabel56.dy = 50;
+    
+    var hourglass = indicator56.createChild(am4core.Image);
+  //  hourglass.href = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-160/hourglass.svg";
+     hourglass.href = "hourglass.svg";  
+    hourglass.align = "center";
+    hourglass.valign = "middle";
+    hourglass.horizontalCenter = "middle";
+    hourglass.verticalCenter = "middle";
+    hourglass.scale = 0.7;
+  }
+  
+  indicator56.hide(0);
+  indicator56.show();
+  
+  clearInterval(indicatorInterval56);
+  indicatorInterval56 = setInterval(function() {
+    hourglass.animate([{
+      from: 0,
+      to: 360,
+      property: "rotation"
+    }], 2000);
+  }, 3000);
+} 
+        
+function showIndicator57() {
+  
+  if (!indicator57) {
+    //var 
+    indicator57 = charts['chartdiv57'] .tooltipContainer.createChild(am4core.Container);
+    indicator57.background.fill = am4core.color("#fff");
+    indicator57.background.fillOpacity = 0.8;
+    indicator57.width = am4core.percent(100);
+    indicator57.height = am4core.percent(100);
+
+    var indicatorLabel57 = indicator57.createChild(am4core.Label);
+    indicatorLabel57.text = "Daten werden geladen ...";
+    indicatorLabel57.align = "center";
+    indicatorLabel57.valign = "middle";
+    indicatorLabel57.fontSize = 20;
+    indicatorLabel57.dy = 50;
+    
+    var hourglass = indicator57.createChild(am4core.Image);
+  //  hourglass.href = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-160/hourglass.svg";
+     hourglass.href = "hourglass.svg";  
+    hourglass.align = "center";
+    hourglass.valign = "middle";
+    hourglass.horizontalCenter = "middle";
+    hourglass.verticalCenter = "middle";
+    hourglass.scale = 0.7;
+  }
+  
+  indicator57.hide(0);
+  indicator57.show();
+  
+  clearInterval(indicatorInterval57);
+  indicatorInterval57 = setInterval(function() {
+    hourglass.animate([{
+      from: 0,
+      to: 360,
+      property: "rotation"
+    }], 2000);
+  }, 3000);
+}         
+function hideIndicator(bdnr) {
+     if (indicator[bdnr]) {
+        indicator[bdnr].hide();
+       // clearInterval(indicatorInterval14);
+        clearInterval(indicatorInterval[bdnr]);
+      //   showIndiNoData(bdnr);
+    }
+
+}
+
+       
+
+
+
+function checkR() {
+//    socket.on('sStation', function(res2) {
+        console.log("RRRRRRRR::");
+//    });
+}              
+          
+function pad(number, length) {
+   
+    var str = '' + number;
+    while (str.length < length) {
+        str = '0' + str;
+    }
+   
+    return str;
+
+}
+      </script>
+  </body>
+</html>

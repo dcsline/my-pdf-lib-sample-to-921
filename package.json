@@ -1,0 +1,27 @@
+{
+  "name": "Maintenance Report",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "start-dev": "nodemon ./app.js"
+  },
+  "dependencies": {
+    "@sweetalert2/themes": "^2.1.0",
+    "custom-env": "^1.0.0",
+    "debug": "~2.6.0",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "express-validator": "^5.3.1",
+    "install": "^0.12.2",
+    "memory": "0.0.3",
+     "npm": "^6.9.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pdf-lib": "^1.16.0",
+    "serve-favicon": "^2.5.0",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
+    "sweetalert2": "^8.16.3"
+  }
+}
